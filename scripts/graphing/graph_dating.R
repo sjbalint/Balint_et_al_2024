@@ -11,7 +11,7 @@ library(ggsci)
 
 # import data -------------------------------------------------------------
 
-data.df <- read_excel("raw/dating/raw_dating.xlsx") %>%
+data.df <- read_excel("raw/raw_dating.xlsx") %>%
   as.data.frame() %>%
   mutate(location=factor(location,levels=c("North","Middle","South")))
 
@@ -26,7 +26,6 @@ legend_title <- NULL
 
 #import base graphing theme
 load("Rdata/basetheme.Rdata")
-
 #import ylabels.df for the plot_longer function
 load("Rdata/graphing_labels.Rdata")
 
@@ -37,10 +36,12 @@ plot_longer <- function(data.df,long_cols){
   plot.df <- left_join(plot.df,ylabels.df)
   
   factor_names <- plot.df %>%
-    pull(factor) %>%
+    pull(factor1) %>%
     unique()
   
-  plot.df$factor <- factor(plot.df$factor,levels=factor_names,ordered=TRUE)
+  plot.df <- plot.df %>%
+    mutate(factor =factor(factor1,levels=factor_names),
+           name=factor(name))
   
   return (plot.df)
 }
@@ -75,7 +76,7 @@ ggplot(temp.df)+
   scale_y_reverse()+
   geom_vline(xintercept=0)
 
-ggsave("figures/dating.png",width=mywidth, height=myheight)
+ggsave("figures/S6.png",width=mywidth, height=myheight)
 
 
 # dating ---------------------------------------------------------------
@@ -100,4 +101,4 @@ ggplot(dating.df)+
   theme(legend.position="none")+
   scale_y_reverse()
 
-ggsave("figures/chronology.png",width=mywidth, height=myheight)
+ggsave("figures/FigS7.png",width=mywidth, height=myheight)

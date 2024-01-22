@@ -110,7 +110,7 @@ count.df <- bind_rows(count_century.df,count_location.df)
 
 count.df <- bind_rows(count.df,count_cluster.df)
 
-pdf("figures/QQplot.pdf", width=7, height=7)
+pdf("figures/S4.pdf", width=7, height=7)
 
 #cqplot(data.df[response.list]) #doesn't look very normal
 cqplot(data.df[response.list], detrend = TRUE,
@@ -333,20 +333,3 @@ for (row in 1:nrow(regression.df)){
 }
 
 kable(regression.df)
-
-
-# export results ----------------------------------------------------------
-
-write.csv(mean.df,"output/mean.csv",row.names=FALSE)
-
-write.csv(count.df,"output/count.csv",row.names=FALSE)
-
-write.csv(anova.df,"output/anova.csv",row.names=FALSE)
-
-write.csv(tukey.results.df,"output/tukey.csv",row.names=FALSE)
-
-write.csv(kruskal.df,"output/kruskal.csv",row.names=FALSE)
-
-write.csv(dunn.results.df,"output/dunn.csv",row.names=FALSE)
-
-write.csv(regression.df,"output/regression.csv")

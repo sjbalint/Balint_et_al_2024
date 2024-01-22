@@ -20,7 +20,7 @@ library(ggrepel) #for managing the text
 load("Rdata/population.Rdata")
 
 #import historical timeline data
-timeline.df <- read_excel("raw/population/timeline.xlsx") %>%
+timeline.df <- read_excel("raw/timeline.xlsx") %>%
   arrange(date)
 
 #set type as a factor for graphing
@@ -152,4 +152,4 @@ plot <- plot_grid(p1,p2,ncol=1, align = "v", axis="tb", rel_heights=c(1,2))
 
 ggdraw(plot)
 
-ggsave(plot=plot,"figures/timeline.png",width=10, height=8)
+ggsave(plot=plot,"figures/Fig2.png",width=10, height=8)

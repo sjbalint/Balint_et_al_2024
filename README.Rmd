@@ -1,6 +1,7 @@
 ---
-title: "Supplemental information for: Experimental assessment of EAIRMS normalization methodologies for environmental stable isotopes"
-author: "Sawyer Balint, Morgan Schwartz, Drew Fowler, Stella Linnekogel, Sáde Cromratie Clemons, and Laura K. Burkemper."
+title: "Supplemental information for: Three centuries of biogeochemical change in a temperate embayment as revealed by sediment cores stable isotopes and historical ecology"
+
+author: "Sawyer J. Balint, Morgan Schwartz, Andrew Gray, Tim Cranston, Robinson W. Fulweiler, Melissa Hagy, Rick McKinney, and Autumn Oczkowski"
 date: '(2024)'
 output: github_document
 ---
@@ -12,13 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-This repository contains data for the manuscript "Experimental assessment of EAIRMS normalization methodologies for environmental stable isotopes" by Sawyer Balint, Morgan Schwartz, Drew Fowler, Stella Linnekogel, Sáde Cromratie Clemons, and Laura K. Burkemper.
+This repository contains data for the manuscript "Three centuries of biogeochemical change in a temperate embayment as revealed by sediment cores stable isotopes and historical ecology", by Sawyer J. Balint, Morgan Schwartz, Andrew Gray, Tim Cranston, Robinson W. Fulweiler, Melissa Hagy, Rick McKinney, and Autumn Oczkowski
 
 <center><h2>Directory Structure</h2></center>
 
-<h3>/raw</h3> input files containing raw data from the EAIRMS instruments
-<h3>/scripts</h3> R scripts that tidy the raw data, perform isotopic normalization, and generate figures
-<h3>/Rdata</h3> .rds and .Rdata files of tidied and normalized data
-<h3>/export</h3> .csv files of raw and normalized data in several different layouts for readability
+<h3>/raw</h3> input files containing raw data
+<h3>/scripts</h3> R scripts that tidy the raw data, generate figures, and perform stats
+<h3>/Rdata</h3> .rds and .Rdata files of tidied data
+<h3>/export</h3> .csv files of raw and tidied data in several different layouts for readability
 <h3>/figures</h3> .png figures used in the manuscript
 

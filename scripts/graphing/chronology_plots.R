@@ -44,7 +44,6 @@ legend_title <- NULL
 
 #import base graphing theme
 load("Rdata/basetheme.Rdata")
-
 #import ylabels.df for the plot_longer function
 load("Rdata/graphing_labels.Rdata")
 
@@ -118,31 +117,7 @@ print_stats <- function(long.df, hide.ns=TRUE){
   print(stat.test, n=nrow(stat.test))
 }
 
-# HCA results -------------------------------------------------------------
-
-plot.df <- data.df %>%
-  select(location, year.mean, cluster) %>%
-  group_by(location, cluster) %>%
-  mutate(year.max=max(year.mean),
-         year.min=min(year.mean)) %>%
-  ungroup() %>%
-  select(-year.mean) %>%
-  unique()
-
-write.csv(plot.df, "output/HCA_clusters.csv", row.names=FALSE)
-
-ggplot(plot.df, aes(x=location, xend=location, y=year.min, yend=year.max, color=cluster))+
-  basetheme+
-  scale_x_discrete(position = "top")+
-  geom_segment(linewidth=2)+
-  geom_segment(linewidth=15, show.legend=FALSE)+
-  #scale_color_viridis_d(option="cividis", direction = -1, aesthetics = c("colour", "fill"))+
-  labs(x=NULL, y="Year", color="Cluster")
-
-ggsave("figures/HCA.png",width=6, height=4)
-
 # grainsize ---------------------------------------------------------------
-
 
 temp.df <- plot_longer(data.df,c("sand.pct","mean.phi","accretion.rate.gcm2yr","sd.phi"))
 
@@ -150,47 +125,9 @@ make_plot(temp.df)
 
 print_stats(temp.df)
 
-ggsave("figures/grainsize.png",width=mywidth, height=myheight)
-
-# elemental composition again ---------------------------------------------
-
-temp.df <- plot_longer(data.df,c("%C.organic","%N","P.total.pct.e2"))
-
-make_plot(temp.df)
-
-print_stats(temp.df)
-
-
-ggsave("figures/elements.png",width=mywidth, height=myheight)
+ggsave("figures/Fig3.png",width=mywidth, height=myheight)
 
 # elemental ratios --------------------------------------------------------
-
-temp.df <- plot_longer(data.df,c("d15N.permil","SiO2.prct","d13C.organic"))
-
-line_factors <- temp.df$factor %>%
-  unique()
-
-make_plot(temp.df)
-
-print_stats(temp.df)
-
-ggsave("figures/isotopes.png",width=mywidth, height=myheight)
-
-# elemental ratios --------------------------------------------------------
-
-temp.df <- plot_longer(data.df,c("SiO2.prct","Si.P.ratio","Si.N.ratio"))
-
-line_factors <- temp.df$factor %>%
-  unique()
-
-make_plot(temp.df)
-
-print_stats(temp.df)
-
-ggsave("figures/Si_ratios.png",width=mywidth, height=myheight)
-
-
-# additional ratios -------------------------------------------------------
 
 temp.df <- plot_longer(data.df,c("C.N.ratio","C.P.ratio", "N.P.ratio"))
 
@@ -204,4 +141,28 @@ make_plot(temp.df)+
 
 print_stats(temp.df)
 
-ggsave("figures/element_ratios.png",width=mywidth, height=myheight)
+ggsave("figures/Fig5.png",width=mywidth, height=myheight)
+
+# isotopes ----------------------------------------------------------------
+
+temp.df <- plot_longer(data.df,c("d15N.permil","SiO2.prct","d13C.organic"))
+
+line_factors <- temp.df$factor %>%
+  unique()
+
+make_plot(temp.df)
+
+print_stats(temp.df)
+
+ggsave("figures/Fig6.png",width=mywidth, height=myheight)
+
+# elemental composition ---------------------------------------------------
+
+temp.df <- plot_longer(data.df,c("%C.organic","%N","P.total.pct.e2"))
+
+make_plot(temp.df)
+
+print_stats(temp.df)
+
+ggsave("figures/S5.png",width=mywidth, height=myheight)
+
