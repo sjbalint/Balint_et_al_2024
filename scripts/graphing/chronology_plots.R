@@ -164,5 +164,5 @@ make_plot(temp.df)
 
 print_stats(temp.df)
 
-ggsave("figures/S5.png",width=mywidth, height=myheight)
+ggsave("figures/S1.png",width=mywidth, height=myheight)
 

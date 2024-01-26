@@ -106,7 +106,11 @@ timeline.df$text_position <- (text_offset*ceiling((nchar(timeline.df$description
 timeline.df$Year <- timeline.df$date
 
 plot.df <- population.df %>%
-  filter(Region!="Washington County")
+  drop_na() %>%
+  filter(Region!="Washington County") %>%
+  arrange(Region, Year)
+
+#write.csv(plot.df, "raw/census.csv")
 
 #plot of population
 p1 <- ggplot(plot.df,aes(Year,Population/1000,fill=Region))+
