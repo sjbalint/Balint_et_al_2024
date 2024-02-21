@@ -8,6 +8,7 @@ library(grid)
 library(ggsci)
 library(cluster)
 library(factoextra) #for optimixing clusters
+library(dendextend) #for plotting dendrogran
 
 update_geom_defaults("point", list(shape = 21, fill="grey"))
 
@@ -90,7 +91,11 @@ dendro <- clust %>%
   #set("highlight_branches_lwd") %>%
   as.ggdend()
 
+outline <- dendro$segments
+
 ggplot(dendro, horiz = TRUE)+
+  geom_segment(data=outline, aes(x=x, y=y, xend=xend, yend=yend), color="black", linewidth=1.2, lineend = "square")+
+  geom_segment(data=outline, aes(x=x, y=y, xend=xend, yend=yend, color=col), lineend = "square")+
   scale_color_manual(values=c(scales::viridis_pal(option="cividis", dir=-1)(4), "black"))+
   theme(axis.line.x.bottom = element_line(),
         axis.ticks.x.bottom = element_line())+
@@ -112,8 +117,9 @@ ggsave("figures/FigS2.png")
 
 ggplot(plot.df, aes(year.mean, Comp.1, fill=cluster, color=cluster, shape=location))+
   mytheme+
-  geom_line()+
-  geom_point(color="black")+
+  geom_line(color="black", linewidth=1)+
+  geom_line(alpha=0.8)+
+  geom_point(color="black", size=2)+
   labs(x="Year",y="PC1\n(51%)", fill="Cluster", color="Cluster", shape="Location")
 
 ggsave("figures/FigS3.png")
