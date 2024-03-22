@@ -102,7 +102,6 @@ ggplot(dendro, horiz = TRUE)+
   geom_hline(yintercept=10, linetype="dashed")
 
 ggsave("figures/FigS1.png")
-
 # graph PCA ---------------------------------------------------------------
 
 plot.df <- data.frame(pca$scores, year.mean=data$year.mean, location=data$location)

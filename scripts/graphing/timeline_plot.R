@@ -20,7 +20,7 @@ library(ggrepel) #for managing the text
 load("Rdata/population.Rdata")
 
 #import historical timeline data
-timeline.df <- read_excel("raw/timeline.xlsx") %>%
+timeline.df <- read_excel("raw/timeline_data.xlsx") %>%
   arrange(date)
 
 #set type as a factor for graphing
@@ -130,7 +130,7 @@ p1 <- ggplot(plot.df,aes(Year,Population/1000,fill=Region))+
 
 #timeline
 p2 <- ggplot(timeline.df,aes(x=Year,y=position))+
-  geom_hline(yintercept=0, color = "black", size=0.7)+
+  geom_hline(yintercept=0, color = "black", linewidth=0.7)+
   geom_segment(data=date_range.df, aes(y=-0.2, yend=0.2, x=date_label, xend=date_label))+
   geom_segment(data=date_range.df, aes(y=-0.1, yend=0.1, x=date_breaks, xend=date_breaks))+
   geom_segment(aes(yend=0,xend=date), color='black', size=0.2)+
