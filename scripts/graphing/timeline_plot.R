@@ -135,7 +135,7 @@ p2 <- ggplot(timeline.df,aes(x=Year,y=position))+
   geom_segment(data=date_range.df, aes(y=-0.1, yend=0.1, x=date_breaks, xend=date_breaks))+
   geom_segment(aes(yend=0,xend=date), color='black', size=0.2)+
   geom_point(aes(shape=type,fill=type),size=3)+
-  geom_text(data=date_range.df, aes(x=date_range,y=-0.5, label=date_label),size=3.5, color='black', angle=0)+
+  geom_label(data=date_range.df, aes(x=date_range,y=-0.5, label=date_label),size=3.5, color='black', angle=0)+
   geom_text(aes(y=text_position, color=type, label = str_wrap(description, 20)), size=3, direction="y", show.legend=FALSE)+
   theme_classic()+
   theme(axis.line.y=element_blank(),
@@ -156,4 +156,4 @@ plot <- plot_grid(p1,p2,ncol=1, align = "v", axis="tb", rel_heights=c(1,2))
 
 ggdraw(plot)
 
-ggsave(plot=plot,"figures/Fig2.png",width=10, height=8)
+ggsave(plot=plot,"figures/Fig2.pdf",width=10, height=8)
